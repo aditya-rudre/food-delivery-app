@@ -24,10 +24,11 @@ const Cart = () => {
 
         {food_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
+            console.log(item.image); // Log the image path
             return (
               <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+                <img src={item.image} alt={item.name} />
                   <p>{item.name}</p>
                   <p>₹ {item.price}</p>
                   <p>{cartItems[item._id]}</p>
@@ -40,7 +41,9 @@ const Cart = () => {
               </div>
             );
           }
+          return null;
         })}
+
         <hr />
       </div>
       <div className="cart-bottom">
@@ -59,7 +62,9 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details">
               <b>Total Amount</b>
-              <b>{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 40}</b>
+              <b>
+                {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 40}
+              </b>
             </div>
           </div>
           <button onClick={() => navigate("/order")}>

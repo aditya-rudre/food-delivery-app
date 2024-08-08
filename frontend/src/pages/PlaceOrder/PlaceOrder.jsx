@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../components/context/StoreContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
@@ -27,10 +28,9 @@ const PlaceOrder = () => {
   const placeOrder = async (event) => {
     event.preventDefault();
     let orderItems = [];
-    food_list.map((item) => {
+    food_list.forEach((item) => {
       if (cartItems[item._id] > 0) {
-        let itemInfo = item;
-        itemInfo["quantity"] = cartItems[item._id];
+        let itemInfo = { ...item, quantity: cartItems[item._id] };
         orderItems.push(itemInfo);
       }
     });
@@ -43,7 +43,7 @@ const PlaceOrder = () => {
 
     try {
       let response = await axios.post(`${url}/api/order/place`, orderData, { headers: { token } });
-      console.log("Response:", response.data); // Log the response
+      console.log("Response:", response.data);
       if (response.data.success) {
         const { session_url } = response.data;
         window.location.replace(session_url);
@@ -56,6 +56,14 @@ const PlaceOrder = () => {
       alert("Error placing the order.");
     }
   };
+
+  const navigate = useNavigate(); // Correctly use the useNavigate hook
+
+  useEffect(() => {
+    if (!token || getTotalCartAmount() === 0) {
+      navigate('/cart');
+    }
+  }, [token, getTotalCartAmount, navigate]);
 
   return (
     <form onSubmit={placeOrder} className="place-order">

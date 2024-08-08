@@ -17,8 +17,11 @@
 }
 
 .cart-items-item img {
-    width: 50px;
+    width: 50px; /* Ensure this is set correctly */
+    height: auto;
+    object-fit: cover; /* This helps in making sure the image fits nicely */
 }
+
 
 hr {
     height: 1px;

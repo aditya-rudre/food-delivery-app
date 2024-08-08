@@ -6,9 +6,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <div className='content'>
+      <footer className="footer">
       <p>&copy; {currentYear} Hotmeal. All rights reserved.</p>
     </footer>
+    </div>
   );
 };
 

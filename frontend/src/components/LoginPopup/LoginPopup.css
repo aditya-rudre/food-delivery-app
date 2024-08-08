@@ -1,15 +1,19 @@
+/* Base styles for the login popup */
 .login-popup {
-    position: absolute;
+    position: fixed; /* Changed to fixed to ensure it stays in view */
+    top: 0;
+    left: 0;
     z-index: 1;
     width: 100%;
     height: 100%;
     background-color: #00000090;
     display: grid;
+    place-items: center; /* Centers the popup container */
 }
 
 .login-popup-container {
-    place-self: center;
-    width: max(23vw, 330px);
+    width: 90%;
+    max-width: 330px; /* Adjusted for responsiveness */
     color: #808080;
     background-color: white;
     display: flex;
@@ -26,9 +30,7 @@
     justify-content: space-between;
     align-items: center;
     color: black;
-
 }
-
 
 .login-popup-title img {
     width: 16px;
@@ -45,6 +47,7 @@
     border: 1px solid #45b74b;
     padding: 10px;
     border-radius: 10px;
+    width: 100%; /* Ensures inputs take full width of container */
 }
 
 .login-popup-container button {
@@ -55,6 +58,7 @@
     background-color: #45b74b;
     font-size: 15px;
     cursor: pointer;
+    width: 100%; /* Ensures button takes full width of container */
 }
 
 .login-popup-condition {
@@ -64,7 +68,7 @@
     margin-top: -15px;
 }
 
-.login-popup-condition input{
+.login-popup-condition input {
     margin-top: 5px;
 }
 
@@ -72,4 +76,35 @@
     color: #45b74b;
     font-weight: 500;
     cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .login-popup-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .login-popup-title img {
+        width: 20px; /* Increase size for easier interaction on small screens */
+    }
+}
+
+@media (max-width: 400px) {
+    .login-popup-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .login-popup-title img {
+        width: 24px; /* Increase size for easier interaction on very small screens */
+    }
+
+    .login-popup-inputs input {
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    .login-popup-container button {
+        padding: 12px; /* Adjust padding for button */
+    }
 }

@@ -105,6 +105,7 @@ hr {
         flex-direction: column-reverse;
     }
     .cart-promocode {
+        width: 100%;
         justify-content: start;
     }
 }

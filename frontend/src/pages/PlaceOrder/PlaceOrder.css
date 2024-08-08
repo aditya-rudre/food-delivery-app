@@ -34,9 +34,39 @@
 .place-order-right {
     width: 100%;
     max-width: max(30%, 400px);
-
 }
 
 .place-order .cart-total button {
     margin-top: 30px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .place-order {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .place-order-left,
+    .place-order-right {
+        max-width: 100%;
+    }
+
+    .place-order-left .multi-fields {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .place-order-left .title {
+        font-size: 20px;
+    }
+
+    .place-order-left input {
+        padding: 8px;
+    }
+
+    .place-order .cart-total button {
+        width: 100%;
+    }
 }
